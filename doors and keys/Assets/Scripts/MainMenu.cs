@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Awake()
-    {
-        if (!gameObject.activeSelf)
-            gameObject.SetActive(true);
-    }
-
     public void StartGame()
     {
         gameObject.SetActive(false);
+        Camera.main.GetComponent<CameraController>().enabled = true;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
