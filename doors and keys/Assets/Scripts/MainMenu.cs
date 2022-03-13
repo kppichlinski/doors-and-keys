@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     {
         gameObject.SetActive(false);
         Camera.main.GetComponent<CameraController>().enabled = true;
-        Timer.instance.StartTimer();
+        Timer.instance.TimerState(true);
     }
 
     public void ExitGame()

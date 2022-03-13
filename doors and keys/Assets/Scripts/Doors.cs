@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Doors : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
+public class Doors : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private Animator animator;
 
@@ -33,7 +33,12 @@ public class Doors : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ActionPanel.instance.ChangeColor(gameObject, true);
+        MouseAndObjectInteraction.instance.ChangeColor(gameObject, true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MouseAndObjectInteraction.instance.ChangeColor(gameObject, false);
     }
 
     public void YesButtonAction()
@@ -43,6 +48,5 @@ public class Doors : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
         StartCoroutine(EndGame.instance.GameOver());
     }
-
    
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
-public class Chest : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
+public class Chest : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private Animator animator;
 
@@ -25,13 +25,22 @@ public class Chest : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ActionPanel.instance.ChangeColor(gameObject, true);
+        if (!animator.GetBool("Open"))
+        {
+            MouseAndObjectInteraction.instance.ChangeColor(gameObject, true);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MouseAndObjectInteraction.instance.ChangeColor(gameObject, false);
     }
 
     public void YesButtonAction()
     {
         animator.SetBool("Open", true);
         ActionPanel.instance.ShowWindowDialog(false);
+        GetComponent<ParticleSystem>().Stop();
     }
 
     private void OnDrawGizmos()

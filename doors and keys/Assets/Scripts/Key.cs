@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Key : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
+public class Key : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 { 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -14,7 +14,12 @@ public class Key : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ActionPanel.instance.ChangeColor(gameObject, true);
+        MouseAndObjectInteraction.instance.ChangeColor(gameObject, true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MouseAndObjectInteraction.instance.ChangeColor(gameObject, false);
     }
 
     public void YesButtonAction()

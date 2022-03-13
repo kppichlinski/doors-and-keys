@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
@@ -20,20 +21,29 @@ public class EndGame : MonoBehaviour
 
     private void OnGameEnd()
     {
+        ScreenShake.instace.enabled = false;
+
         endGamePanel.SetActive(true);
-        currentScore.text = Timer.TimeToString(Timer.instance.TimeFromStart);
+        Timer.instance.TimerState(false);
 
-        float time = PlayerPrefs.GetFloat("BestTime", -1);
+        float time = Timer.instance.TimeFromStart;
+        currentScore.text = "Current score: " +  Timer.TimeToString(time);
 
-        if (time == -1 || time < Timer.instance.TimeFromStart)
-            PlayerPrefs.SetFloat("BestTime", Timer.instance.TimeFromStart);
+        float bestScore = PlayerPrefs.GetFloat("BestScore", -1);
 
-        highScore.text = Timer.TimeToString(PlayerPrefs.GetFloat("BestTime"));
+        if (bestScore == -1 || time < bestScore)
+        {
+            bestScore = time;
+            PlayerPrefs.SetFloat("BestScore", bestScore);
+            PlayerPrefs.Save();
+        }
+
+        highScore.text = "High score: " + Timer.TimeToString(bestScore);
     }
 
     public void TryAgain()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public IEnumerator GameOver()

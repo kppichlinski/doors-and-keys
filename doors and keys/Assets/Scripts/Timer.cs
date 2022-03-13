@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     [HideInInspector] public float TimeFromStart { get { return time; } set { time = value; } }
     private float time = 0;
 
-    private bool startTimer;
+    private bool isTimerEnabled;
     private TextMeshProUGUI text;
 
     private void Awake()
@@ -23,17 +23,17 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
-        if (startTimer)
+        if (isTimerEnabled)
         {
             time += Time.deltaTime;
             text.text = TimeToString(time);
         }
     }
 
-    public void StartTimer()
+    public void TimerState(bool state)
     {
-        startTimer = true;
-        timer.SetActive(true);
+        isTimerEnabled = state;
+        timer.SetActive(state);
     }
 
     public static string TimeToString(float time)

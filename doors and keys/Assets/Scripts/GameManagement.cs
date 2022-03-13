@@ -9,4 +9,9 @@ public class GameManagement : MonoBehaviour
     public static GameManagement instance;
 
     [HideInInspector] public bool hasPlayerKey;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 }

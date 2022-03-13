@@ -22,6 +22,7 @@ public class ActionPanel : MonoBehaviour
 
     public void SetActions(UnityAction yesButtonAction, string text)
     {
+        yesButton.onClick.RemoveAllListeners();
         yesButton.onClick.AddListener(yesButtonAction);
         questionText.text = text;
     }
@@ -29,11 +30,6 @@ public class ActionPanel : MonoBehaviour
     public  void ShowWindowDialog(bool state)
     {
         panel.SetActive(state);
-    }
-
-    public  void ChangeColor(GameObject gameObject, bool state)
-    {
-        return;
     }
 
     public void CloseWindowDialog()
