@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5010345744195216643}
-  m_Layer: 0
+  - component: {fileID: 5865446689213206715}
+  - component: {fileID: 5641581285273631328}
+  - component: {fileID: 7183744042339694264}
+  m_Layer: 6
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,6 +37,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5865446689213206715
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042223223467545413}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: deb484e7512ee43409bcfd509bc62ad3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5641581285273631328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042223223467545413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7673e4b0109004349817c90eea5ae55d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasPlayerKey: 0
+--- !u!65 &7183744042339694264
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042223223467545413}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.000002, y: 7.000004, z: 2.015554}
+  m_Center: {x: 0.000002861023, y: 3.5, z: -0.009963989}
 --- !u!1 &7249685328327336940
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +93,7 @@ GameObject:
   - component: {fileID: 7244290564602276376}
   - component: {fileID: 7272802122987876972}
   - component: {fileID: 7262751172488140092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_028
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +174,7 @@ GameObject:
   - component: {fileID: 7248098006455967202}
   - component: {fileID: 7273002091285240048}
   - component: {fileID: 7262606080669122176}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +255,7 @@ GameObject:
   - component: {fileID: 7248375661570981914}
   - component: {fileID: 7272712185603940206}
   - component: {fileID: 7262809863708866110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arch_wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +336,7 @@ GameObject:
   - component: {fileID: 7244249115362199092}
   - component: {fileID: 7272995323210111770}
   - component: {fileID: 7263173291430644560}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_025
   m_TagString: Untagged
   m_Icon: {fileID: 0}

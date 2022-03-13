@@ -16,17 +16,13 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         controls = new InputMaster().Camera;
+        cameraCenter = new Vector2(transform.position.x, transform.position.z);
     }
 
     private void Update()
     {
         MoveCamera();
         RotateCamera();
-    }
-
-    private void Start()
-    {
-        cameraCenter = new Vector2(transform.position.x, transform.position.z);
     }
 
     private void MoveCamera()
