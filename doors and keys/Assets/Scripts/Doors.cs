@@ -33,7 +33,8 @@ public class Doors : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        MouseAndObjectInteraction.instance.ChangeColor(gameObject, true);
+        if (!animator.GetBool("Open"))
+            MouseAndObjectInteraction.instance.ChangeColor(gameObject, true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -51,9 +52,11 @@ public class Doors : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, 
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.cyan;
         Collider collider = GetComponent<Collider>();
-        Gizmos.DrawWireCube(collider.bounds.center, collider.bounds.size * 2f);
+        Vector3 absForward = new Vector3(Mathf.Abs(collider.transform.forward.x), Mathf.Abs(collider.transform.forward.y), Mathf.Abs(collider.transform.forward.z));
+        Vector3 absRight = new Vector3(Mathf.Abs(collider.transform.right.x), Mathf.Abs(collider.transform.right.y), Mathf.Abs(collider.transform.right.z));
+        Gizmos.DrawWireCube(collider.bounds.center, collider.bounds.size + (absForward * 1f) + (absRight * 1f));
     }
 
 }

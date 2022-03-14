@@ -48,6 +48,7 @@ public class EndGame : MonoBehaviour
 
     public IEnumerator GameOver()
     {
+        Camera.main.GetComponent<CameraController>().enabled = false;
         yield return new WaitForSeconds(timeToEnd);
         OnGameEnd();
     }

@@ -26,9 +26,7 @@ public class Chest : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!animator.GetBool("Open"))
-        {
             MouseAndObjectInteraction.instance.ChangeColor(gameObject, true);
-        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -46,7 +44,7 @@ public class Chest : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position, GetComponent<BoxCollider>().bounds.size);
+        Gizmos.DrawWireCube(transform.position, Vector3.Scale(GetComponent<BoxCollider>().size, transform.localScale));
     }
 
 }

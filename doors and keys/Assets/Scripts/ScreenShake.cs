@@ -10,6 +10,7 @@ public class ScreenShake : MonoBehaviour
     [SerializeField] float shakeDuration;
     [SerializeField] float shakeCooldown;
     [SerializeField] float rotationPower;
+    [SerializeField] AudioSource explosionSound;
 
     private float timeRemaining;
     private float fadeTime;
@@ -21,16 +22,20 @@ public class ScreenShake : MonoBehaviour
         timeRemaining = 0;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         InvokeRepeating("InvokeShake", shakeCooldown, shakeCooldown);
     }
 
     public void InvokeShake()
     {
-        modifiedShakePower = shakePower;
-        timeRemaining = shakeDuration;
-        fadeTime = modifiedShakePower / shakeDuration;
+        if (enabled)
+        {
+            modifiedShakePower = shakePower;
+            timeRemaining = shakeDuration;
+            fadeTime = modifiedShakePower / shakeDuration;
+            explosionSound.Play();
+        }
     }
 
     private void LateUpdate()

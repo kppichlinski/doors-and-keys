@@ -56,21 +56,28 @@ public class GenerateLevel : MonoBehaviour
                 if (!checkedIndexes.Contains(random))
                 {
                     BoxCollider collider = outerWalls[random].GetComponent<BoxCollider>();
-                    Vector3 absForward = new Vector3(Mathf.Abs(collider.transform.forward.x), Mathf.Abs(collider.transform.forward.y), Mathf.Abs(collider.transform.forward.z));
-                    colliders = Physics.OverlapBox(collider.bounds.center, (collider.bounds.size + (absForward * wallColliderOffset) - boxCollisionReduce) / 2, Quaternion.identity, wallsCollisonLayerMask);
 
-                    if (colliders.Length >= 2)
                     {
-                        checkedIndexes.Add(random);
-                        continue;
+                        Vector3 absForward = new Vector3(Mathf.Abs(collider.transform.forward.x), Mathf.Abs(collider.transform.forward.y), Mathf.Abs(collider.transform.forward.z));
+                        colliders = Physics.OverlapBox(collider.bounds.center, (collider.bounds.size + (absForward * wallColliderOffset) - boxCollisionReduce) / 2, Quaternion.identity, wallsCollisonLayerMask);
+
+                        if (colliders.Length >= 2)
+                        {
+                            checkedIndexes.Add(random);
+                            continue;
+                        }
                     }
 
-                    colliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents * 10f, Quaternion.identity, doorsCollisonLayerMask);
-
-                    if (colliders.Length >= 1)
                     {
-                        checkedIndexes.Add(random);
-                        continue;
+                        Vector3 absForward = new Vector3(Mathf.Abs(collider.transform.forward.x), Mathf.Abs(collider.transform.forward.y), Mathf.Abs(collider.transform.forward.z));
+                        Vector3 absRight = new Vector3(Mathf.Abs(collider.transform.right.x), Mathf.Abs(collider.transform.right.y), Mathf.Abs(collider.transform.right.z));
+                        colliders = Physics.OverlapBox(collider.bounds.center, (collider.bounds.size + (absForward * wallColliderOffset) + (absRight * wallColliderOffset)) / 2, Quaternion.identity, doorsCollisonLayerMask);
+
+                        if (colliders.Length >= 1)
+                        {
+                            checkedIndexes.Add(random);
+                            continue;
+                        }
                     }
                 }
 
