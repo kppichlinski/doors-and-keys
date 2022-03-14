@@ -8,8 +8,9 @@ public class GenerateLevel : MonoBehaviour
     [SerializeField] GameObject doorsPrefab;
     [SerializeField] Transform outerWallsWrapper;
     [SerializeField] int doorsNumber;
-    [SerializeField] float wallColliderOffset;
-    [SerializeField] LayerMask layerMaskForDoors;
+    [Min(1f)] [SerializeField] float wallColliderOffset;
+    [SerializeField] LayerMask wallsCollisonLayerMask;
+    [SerializeField] LayerMask doorsCollisonLayerMask;
     [SerializeField] Vector3 boxCollisionReduce;
     [SerializeField] Transform doorsWrapper;
 
@@ -17,8 +18,8 @@ public class GenerateLevel : MonoBehaviour
     [SerializeField] GameObject chestPrefab;
     [SerializeField] Transform mapCenter;
     [SerializeField] Vector3 chestSpawnAreaSize;
-    [SerializeField] LayerMask correctLayerMaskForChest;
     [SerializeField] LayerMask notCorrectLayerMaskForChest;
+    [SerializeField] LayerMask correctLayerMaskForChest;
 
     private Transform[] outerWalls;
 
@@ -56,12 +57,26 @@ public class GenerateLevel : MonoBehaviour
                 {
                     BoxCollider collider = outerWalls[random].GetComponent<BoxCollider>();
                     Vector3 absForward = new Vector3(Mathf.Abs(collider.transform.forward.x), Mathf.Abs(collider.transform.forward.y), Mathf.Abs(collider.transform.forward.z));
-                    colliders = Physics.OverlapBox(collider.bounds.center, (collider.bounds.size + (absForward * wallColliderOffset) - boxCollisionReduce) / 2, Quaternion.identity, layerMaskForDoors);
+                    colliders = Physics.OverlapBox(collider.bounds.center, (collider.bounds.size + (absForward * wallColliderOffset) - boxCollisionReduce) / 2, Quaternion.identity, wallsCollisonLayerMask);
 
                     if (colliders.Length >= 2)
                     {
                         checkedIndexes.Add(random);
+                        continue;
                     }
+
+                    colliders = Physics.OverlapBox(collider.bounds.center, collider.bounds.extents * 10f, Quaternion.identity, doorsCollisonLayerMask);
+
+                    if (colliders.Length >= 1)
+                    {
+                        checkedIndexes.Add(random);
+                        continue;
+                    }
+                }
+
+                if (checkedIndexes.Count >= outerWalls.Length)
+                {
+                    throw new System.Exception("Number of given doors to spawn is bigger than number of walls which can be replaced with doors");
                 }
 
             } while (checkedIndexes.Contains(random));
@@ -87,7 +102,8 @@ public class GenerateLevel : MonoBehaviour
         || Physics.OverlapBox(spawnPosition, Vector3.Scale(chestPrefab.GetComponent<BoxCollider>().size, chestPrefab.transform.localScale), Quaternion.identity, notCorrectLayerMaskForChest).Length > 0);
 
         Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0, 360), 0f);
-        Instantiate(chestPrefab, spawnPosition, randomRotation);
+        GameObject chest = Instantiate(chestPrefab, spawnPosition, randomRotation);
+        chest.GetComponent<BoxCollider>().enabled = false;
     }
 
 

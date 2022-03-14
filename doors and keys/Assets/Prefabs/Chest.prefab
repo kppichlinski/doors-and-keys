@@ -268,7 +268,6 @@ GameObject:
   - component: {fileID: 7495840732184861290}
   - component: {fileID: 7529649747239037890}
   - component: {fileID: 7519427456411481602}
-  - component: {fileID: 8041701664309867051}
   - component: {fileID: 4175561729766694137}
   m_Layer: 0
   m_Name: PiratesChest_A1
@@ -340,18 +339,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8041701664309867051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7497784690633859266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 513fbddbf6669894ca16b66909500a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &4175561729766694137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -545,11 +532,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 118348640000815434}
-  - component: {fileID: 730569367729978756}
   - component: {fileID: 4858663446894922248}
   - component: {fileID: 2044122300779526242}
   - component: {fileID: 5314619656970040083}
   - component: {fileID: 538052443432253952}
+  - component: {fileID: 8439403512576889}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Chest
@@ -576,19 +563,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &730569367729978756
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9163245148419070444}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4858663446894922248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5392,3 +5366,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!65 &8439403512576889
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9163245148419070444}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8516237, y: 1.2938241, z: 0.95362985}
+  m_Center: {x: -0.0008850893, y: 0.504912, z: -0.06416393}

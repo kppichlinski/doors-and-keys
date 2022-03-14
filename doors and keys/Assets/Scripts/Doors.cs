@@ -48,5 +48,12 @@ public class Doors : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, 
 
         StartCoroutine(EndGame.instance.GameOver());
     }
-   
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Collider collider = GetComponent<Collider>();
+        Gizmos.DrawWireCube(collider.bounds.center, collider.bounds.size * 2f);
+    }
+
 }
